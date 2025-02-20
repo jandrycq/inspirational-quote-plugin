@@ -1,0 +1,21 @@
+# fix EOL error for multiple environments for text files
+*.* text eol=lf
+
+# Set image and fonts as binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.eps binary
+*.zip binary
+*.mp4 binary
+*.webm binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+
+# Used to remove files from deployment using `git archive`
+
+# Git files
+.gitattributes export-ignore
+.gitignore export-ignore

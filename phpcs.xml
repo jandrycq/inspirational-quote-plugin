@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Project Standards">
+	<description>WordPress Coding Standards for onboarding</description>
+
+	<!-- Extend Team51 ruleset -->
+	<rule ref="./vendor/a8cteam51/team51-configs/quality-tools/phpcs.xml.dist"/>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+</ruleset>
