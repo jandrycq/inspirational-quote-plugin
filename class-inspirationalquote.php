@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class InspirationalQuote {
 
 	/**
-	 * Constructor for the Inspirational Quote class.
+	 * Constructor del plugin.
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'load_textdomain' ) );
@@ -27,63 +27,70 @@ class InspirationalQuote {
 		add_action( 'wp_ajax_nopriv_get_quote', array( $this, 'ajax_get_quote' ) );
 	}
 
+	/**
+	 * Carga el dominio de texto del plugin.
+	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'inspirational-quote', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
 	 * Carga los scripts del plugin.
-	 */
+	 */	
 	public function enqueue_scripts() {
-		wp_enqueue_script( 'iq-script', plugin_dir_url( __FILE__ ) . 'assets/js/script.js', array( 'jquery' ), '1.0', true );
-		wp_localize_script( 'iq-script', 'iq_ajax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+		wp_enqueue_script('iq-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), '1.0', true);
+		wp_enqueue_style('iq-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
+		wp_localize_script('iq-script', 'iq_ajax', array('ajaxurl' => admin_url('admin-ajax.php')));
 	}
+
 
 	/**
 	 * Devuelve una cita aleatoria al frontend a través de AJAX desde un archivo JSON.
 	 */
 	public function ajax_get_quote() {
 		$json_file = plugin_dir_path(__FILE__) . 'assets/js/quotes.json';
-
+	
 		if (!file_exists($json_file)) {
 			wp_send_json_error(array('message' => __('No se encontró el archivo de frases.', 'inspirational-quote')));
 			return;
 		}
-
+	
 		$quotes = json_decode(file_get_contents($json_file), true);
-
-		if (!$quotes || !is_array($quotes)) {
+	
+		if (empty($quotes) || !is_array($quotes)) {
 			wp_send_json_error(array('message' => __('Error al leer las frases.', 'inspirational-quote')));
 			return;
 		}
-
-			wp_send_json(array('quote' => $quotes[array_rand($quotes)]));
-		}
-
-
+	
+		$random_quote = $quotes[array_rand($quotes)];
+		$random_quote = htmlspecialchars_decode($random_quote, ENT_QUOTES); // Asegura que los caracteres especiales se interpreten bien
+	
+		wp_send_json_success(array('quote' => $random_quote));
+	}
+	
 	/**
-	 * Genera la estructura HTML del plugin.
+	 * Genera la estructura HTML del plugin con una frase aleatoria al cargar la página.
 	 */
 	public function display_quote() {
+		$json_file = plugin_dir_path(__FILE__) . 'assets/js/quotes.json';
+
+		$default_quote = __('No hay frases disponibles.', 'inspirational-quote');
+
+		if (file_exists($json_file)) {
+			$quotes = json_decode(file_get_contents($json_file), true);
+			if (!empty($quotes) && is_array($quotes)) {
+				$default_quote = $quotes[array_rand($quotes)];
+			}
+		}
+
 		ob_start();
 		?>
-		<div id="quote-container"><?php echo esc_html( $this->get_random_quote() ); ?></div>
-		<button id="new-quote"><?php _e( 'Nueva frase', 'inspirational-quote' ); ?></button>
+		<div id="quote-container"><?php echo esc_html($default_quote); ?></div>
+		<button id="new-quote"><?php esc_html_e('Nueva frase', 'inspirational-quote'); ?></button>
 		<?php
 		return ob_get_clean();
 	}
 
-	/**
-	 * Obtiene una frase aleatoria.
-	 */
-	public function get_random_quote() {
-		$quotes = array(
-			__( 'La vida es 10% lo que te sucede y 90% cómo reaccionas.', 'inspirational-quote' ),
-			__( 'El éxito no es definitivo, el fracaso no es fatal.', 'inspirational-quote' ),
-			__( 'Tu tiempo es limitado, no lo desperdicies viviendo la vida de otros.', 'inspirational-quote' ),
-		);
-		return $quotes[ array_rand( $quotes ) ];
-	}
 }
 
 new InspirationalQuote();
