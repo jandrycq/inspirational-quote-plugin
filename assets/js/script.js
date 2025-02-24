@@ -18,7 +18,11 @@ document.addEventListener(
 					.then( response => response.json() )
 					.then(
 						data => {
-							container.textContent = data.quote;
+							if (data.success) {
+								container.textContent = data.quote;
+							} else {
+								container.textContent = "Error al cargar la frase.";
+							}
 						}
 					)
 					.catch( error => console.error( "Error:", error ) );
@@ -27,3 +31,4 @@ document.addEventListener(
 		}
 	}
 );
+

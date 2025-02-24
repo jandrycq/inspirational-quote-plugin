@@ -40,17 +40,26 @@ class InspirationalQuote {
 	}
 
 	/**
-	 * Devuelve una cita aleatoria al frontend a través de AJAX.
+	 * Devuelve una cita aleatoria al frontend a través de AJAX desde un archivo JSON.
 	 */
 	public function ajax_get_quote() {
-		$quotes = array(
-			__( 'La vida es 10% lo que te sucede y 90% cómo reaccionas.', 'inspirational-quote' ),
-			__( 'El éxito no es definitivo, el fracaso no es fatal.', 'inspirational-quote' ),
-			__( 'Tu tiempo es limitado, no lo desperdicies viviendo la vida de otros.', 'inspirational-quote' ),
-		);
+		$json_file = plugin_dir_path(__FILE__) . 'assets/js/quotes.json';
 
-		wp_send_json( array( 'quote' => $quotes[ array_rand( $quotes ) ] ) );
-	}
+		if (!file_exists($json_file)) {
+			wp_send_json_error(array('message' => __('No se encontró el archivo de frases.', 'inspirational-quote')));
+			return;
+		}
+
+		$quotes = json_decode(file_get_contents($json_file), true);
+
+		if (!$quotes || !is_array($quotes)) {
+			wp_send_json_error(array('message' => __('Error al leer las frases.', 'inspirational-quote')));
+			return;
+		}
+
+			wp_send_json(array('quote' => $quotes[array_rand($quotes)]));
+		}
+
 
 	/**
 	 * Genera la estructura HTML del plugin.
