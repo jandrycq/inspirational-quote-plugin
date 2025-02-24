@@ -1,0 +1,23 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Inspirational Quote Plugin\n"
+"POT-Creation-Date: 2025-02-24\n"
+"PO-Revision-Date: 2025-02-24\n"
+"Last-Translator: Jandry\n"
+"Language-Team: Tu Equipo\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "La vida es 10% lo que te sucede y 90% cómo reaccionas."
+msgstr "La vida es 10% lo que te sucede y 90% cómo reaccionas."
+
+msgid "El éxito no es definitivo, el fracaso no es fatal."
+msgstr "El éxito no es definitivo, el fracaso no es fatal."
+
+msgid "Tu tiempo es limitado, no lo desperdicies viviendo la vida de otros."
+msgstr "Tu tiempo es limitado, no lo desperdicies viviendo la vida de otros."
+
+msgid "Nueva frase"
+msgstr "Nueva frase"
