@@ -1,27 +1,29 @@
-# Inspirational Quote Plugin
+Inspirational Quote Plugin
 
-Este es un plugin para WordPress que muestra frases inspiradoras aleatorias en tu sitio web. Permite actualizar las frases sin recargar la página utilizando AJAX y se basa en un archivo JSON para la gestión de citas.
+Este es un plugin para WordPress que muestra frases inspiradoras aleatorias en tu sitio web. Permite actualizar las frases sin recargar la página utilizando AJAX y carga las citas desde un archivo JSON.
 
----
+✨ Características
 
-## 🚀 Características
-- 📌 **Shortcode** `[frase_inspiradora]` para insertar frases inspiradoras en cualquier parte del sitio.
-- ⚡ **Carga inicial con una frase aleatoria** sin necesidad de presionar el botón.
-- 🛠️ **Actualización dinámica** de frases mediante **AJAX**.
-- 🎨 **Estilos personalizados** con `style.css` para mejorar el diseño.
-- 🌍 **Internacionalización** con archivos `.mo` y `.po` listos para traducción.
-- ✅ **Código estructurado en OOP (Programación Orientada a Objetos)**.
+Shortcode [frase_inspiradora] para insertar frases inspiradoras en cualquier parte del sitio.
 
----
+Carga automática de una frase aleatoria al abrir la página.
 
-## 📚 **Estructura del Proyecto**
-```
+Actualización dinámica con AJAX para cambiar frases sin recargar.
+
+Diseño personalizable con style.css.
+
+Internacionalización lista para traducciones.
+
+Estructura en OOP (Programación Orientada a Objetos) para mayor organización del código.
+
+📚 Estructura del Proyecto
+
 inspirationalQuotePlugin/
 │── assets/
 │   ├── css/
 │   │   └── style.css   # Estilos personalizados
 │   ├── js/
-│   │   ├── script.js   # Lógica en JavaScript para AJAX
+│   │   ├── script.js   # JavaScript para AJAX
 │   │   └── quotes.json # Archivo con frases inspiradoras
 │── languages/
 │   ├── inspirational-quote-es_ES.mo
@@ -29,51 +31,64 @@ inspirationalQuotePlugin/
 │   └── inspirational-quote.pot
 │── class-inspirationalquote.php  # Lógica principal del plugin
 │── README.md  # Documentación
-```
 
----
+🛠️ Instalación
 
-## 🛠️ **Instalación**
-1. **Descarga el código o clónalo desde GitHub**:
-   ```sh
-   git clone https://github.com/jandrycq/inspirational-quote-plugin.git
-   ```
-2. **Sube la carpeta `inspirationalQuotePlugin` a `/wp-content/plugins/`.**
-3. **Activa el plugin** en el panel de administración de WordPress.
-4. **Añade el shortcode `[frase_inspiradora]`** en cualquier página o entrada donde quieras mostrar frases inspiradoras.
+Descarga o clona el repositorio:
 
----
+git clone https://github.com/jandrycq/inspirational-quote-plugin.git
 
-## 🖥️ **Funcionamiento**
-1. **Carga una frase inspiradora al abrir la página.**
-2. **Al presionar el botón "Nueva frase", la frase cambia sin recargar la página.**
-3. **Las frases se almacenan en `assets/js/quotes.json`.** Puedes editar este archivo para agregar nuevas frases.
-4. **El diseño se personaliza con `assets/css/style.css`**.
+Sube la carpeta inspirationalQuotePlugin a /wp-content/plugins/.
 
----
+Activa el plugin desde el panel de administración de WordPress.
 
-## 🛠️ **Decisiones Técnicas**
-- **📁 Uso de JSON**: Las frases se cargan desde `quotes.json` en lugar de estar en código estático.
-- **✨ AJAX con Vanilla JavaScript**: Se utiliza `fetch()` para obtener nuevas frases dinámicamente.
-- **🎨 CSS Mejorado**: Se aplicaron estilos básicos en `style.css` para mejorar la apariencia.
-- **🔍 Depuración con DevTools**: Se solucionó un error donde el CSS no se cargaba por un archivo mal nombrado (`styles.css` en vez de `style.css`).
+Usa el shortcode [frase_inspiradora] en cualquier página o entrada para mostrar frases.
 
----
+🖥️ Cómo funciona
 
-## 🔧 **Dificultades y Soluciones**
-**No se cargaban los estilos** | Se corrigó el nombre del archivo y la ruta en `enqueue_scripts()`. |
-**No se cargaba una frase al inicio** | Se modificó `display_quote()` para mostrar una frase al cargar la página. |
+Al cargar la página, se muestra una frase aleatoria.
 
----
+El botón "Nueva frase" permite actualizar la frase sin recargar la página.
 
-## ✨ **Mejoras futuras**
-- Agregar una interfaz de administración para que el usuario pueda **editar frases desde WordPress** sin modificar el archivo JSON.
-- Conectar el plugin con una API de frases inspiradoras externas.
+Las frases se obtienen desde assets/js/quotes.json y pueden ser editadas manualmente.
 
----
+Los estilos están en assets/css/style.css para facilitar la personalización.
 
-## 📝 **Autor**
-👤 **Jandry Sánchez**  
-🔗 GitHub: [jandrycq](https://github.com/jandrycq)
+🌟 Decisiones Técnicas
 
----
+JSON para almacenar frases: Se eligió un archivo quotes.json para facilitar la edición y escalabilidad.
+
+AJAX con JavaScript puro: Se usa fetch() para actualizar las frases de forma dinámica.
+
+Internacionalización: El plugin está preparado para traducciones mediante .mo y .po.
+
+Estructura modular: Separación clara entre PHP, JavaScript y CSS para mantener el código organizado.
+
+🛠️ Dificultades y Soluciones
+
+Problema
+
+*1 Los estilos no se cargaban
+*2 No se mostraba una frase al inicio
+
+Solución
+
+*1 Se corrigió la ruta en enqueue_scripts().
+
+*2 Se modificó display_quote() para solucionar esto.
+
+🌟 Mejoras Futuras
+
+Panel de administración para que el usuario edite frases desde WordPress sin modificar quotes.json.
+
+Conexión con API externas para obtener frases en tiempo real.
+
+Bloque de Gutenberg para permitir insertar frases en el editor de WordPress sin usar shortcodes.
+
+📚 Notas sobre mi aprendizaje
+
+Este proyecto me permitió reforzar mis conocimientos en PHP, WordPress y AJAX con JavaScript puro. Aunque no incluí un bloque de Gutenberg, reconozco que es un área que aún necesito aprender mejor, ya que requiere conocimientos en React y JavaScript moderno. Es algo en lo que quiero enfocarme a futuro para mejorar mis habilidades como desarrollador de WordPress.
+
+👤 Autor
+
+Jandry SánchezGitHub: jandrycq

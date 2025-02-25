@@ -11,7 +11,7 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Evita acceso directo.
+	exit;
 }
 
 class InspirationalQuote {
