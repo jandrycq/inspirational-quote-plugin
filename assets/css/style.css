@@ -1,0 +1,29 @@
+#quote-container {
+    font-size: 1.5em;
+    font-style: italic;
+    color: #333;
+    margin: 20px auto;
+    padding: 20px;
+    border-left: 5px solid #0073aa;
+    background: #f9f9f9;
+    max-width: 600px;
+    text-align: center;
+}
+
+#new-quote {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#new-quote:hover {
+    background-color: #005a87;
+}
+
