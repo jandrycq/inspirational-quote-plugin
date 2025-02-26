@@ -1,0 +1,17 @@
+{
+    "name": "jandry-onboard-test",
+    "version": "1.0.0",
+    "license": "GPL-3.0-or-later",
+    "engines": {
+      "node": ">=20.0.0"
+    },
+    "scripts": {
+      "lint:scripts": "eslint \"**/*.js\" || [ $? -eq 2 ] && exit 0",
+      "lint:styles": "stylelint \"**/*.css\" || exit 0"
+    },
+    "devDependencies": {
+      "@wordpress/stylelint-config": "latest",
+      "eslint": "^8.57.0",
+      "stylelint": "^16.2.1"
+    }
+  }

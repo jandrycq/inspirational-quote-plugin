@@ -1,0 +1,39 @@
+name: Check Plugin Version
+
+on:
+  pull_request:
+    branches:
+      - trunk
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Get PR version
+        id: pr_version
+        run: echo "VERSION=$(grep "Version:" ${{ github.event.repository.name }}.php | awk '{print $3}')" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout trunk
+        uses: actions/checkout@v4
+        with:
+          ref: trunk
+          clean: false
+
+      - name: Get trunk version
+        id: trunk_version
+        run: echo "VERSION=$(grep "Version:" ${{ github.event.repository.name }}.php | awk '{print $3}')" >> "$GITHUB_OUTPUT"
+
+      - name: Compare versions
+        run: |
+          pr_version="${{ steps.pr_version.outputs.VERSION }}"
+          trunk_version="${{ steps.trunk_version.outputs.VERSION }}"
+          if [ "$(printf '%s\n' "$trunk_version" "$pr_version" | sort -V | tail -n1)" != "$pr_version" ]; then
+            echo "Error: PR version ($pr_version) must be higher than trunk version ($trunk_version)"
+            exit 1
+          fi
