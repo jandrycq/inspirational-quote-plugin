@@ -29,7 +29,8 @@ Develop a WordPress plugin that displays a random inspirational quote on the sit
 
 ### PHP
 
-- **Plugin Structure:**  
+- **Plugin Structure:** 
+  - Name the plugin with the name of this repo  
   - Implement the plugin using object-oriented programming (OOP).  
   - Create at least one main class that initializes and organizes the plugin’s functionality.
 
