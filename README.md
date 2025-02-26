@@ -12,8 +12,11 @@ Develop a WordPress plugin that displays a random inspirational quote on the sit
   - Use internationalization functions for text strings.
 
 - **Version Control:**  
-  - Use Git for version control.  
-  - Upload all your code to a GitHub repository.
+  - Use Git for version control.
+  - Create a new branch from Trunk and push your code there
+  - Once you are sure about your work, create a PR from the branch you created to Trunk
+  - Fix all errors that may arise in your PR
+  - Merge your PR once everything works and notify us to check it
 
 - **Delivery Time:**  
   - The task must be completed within one week.
